@@ -48,7 +48,7 @@ abstract Point(Array<Float>) {
 
 	@:from
 	static inline function fromGeoJson(v:geojson.Point)
-		return fromLatLng({latitude: v.latitude, longitude: v.longitude});
+		return latLng(v.latitude, v.longitude);
 	#end
 
 	#if tink_json
