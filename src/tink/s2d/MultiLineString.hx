@@ -12,6 +12,10 @@ abstract MultiLineString(Array<LineString>) {
 	public inline function new(v)
 		this = v;
 
+	@:op([])
+	public inline function get(i:Int):LineString
+		return this[i];
+
 	public function toWkt():String
 		return length == 0 ? 'MULTILINESTRING EMPTY' : 'MULTILINESTRING(${toWktParams()})';
 
