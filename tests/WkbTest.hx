@@ -59,8 +59,8 @@ class WkbTest {
 	// @formatter:on
 	public function wkb2geojson(wkb:String, geojson:String) {
 		var parsed:Dynamic = switch Parser.wkb(hex(wkb)) {
-			case D2(v): v.toGeoJson();
-			case D3(v): v.toGeoJson();
+			case S2D(v): v.toGeoJson();
+			case S3D(v): v.toGeoJson();
 		}
 		var geojson = Json.parse(geojson);
 		asserts.compare(geojson, parsed);
@@ -115,8 +115,8 @@ class WkbTest {
 	// @formatter:on
 	public function wkb2wkt(wkb:String, wkt:String) {
 		var parsed:Dynamic = switch Parser.wkb(hex(wkb)) {
-			case D2(v): v.toWkt();
-			case D3(v): v.toWkt();
+			case S2D(v): v.toWkt();
+			case S3D(v): v.toWkt();
 		}
 		asserts.assert(parsed == wkt);
 		return asserts.done();

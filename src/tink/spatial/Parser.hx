@@ -21,49 +21,49 @@ class Parser {
 			return switch buffer.readInt32() {
 				// 2D
 				case 1:
-					D2(Point(point2d()));
+					S2D(Point(point2d()));
 				case 2:
-					D2(LineString(new tink.s2d.LineString([for (_ in 0...buffer.readInt32()) point2d()])));
+					S2D(LineString(new tink.s2d.LineString([for (_ in 0...buffer.readInt32()) point2d()])));
 				case 3:
-					D2(Polygon(new tink.s2d.Polygon([
+					S2D(Polygon(new tink.s2d.Polygon([
 						for (_ in 0...buffer.readInt32())
 							new tink.s2d.LineString([for (_ in 0...buffer.readInt32()) point2d()])
 					])));
 				case 4:
-					D2(MultiPoint(new tink.s2d.MultiPoint([
+					S2D(MultiPoint(new tink.s2d.MultiPoint([
 						for (_ in 0...buffer.readInt32())
 							switch _parse() {
-								case D2(Point(v)):
+								case S2D(Point(v)):
 									v;
 								case v:
 									throw 'Unexpected ${v} inside MultiPoint(2D)';
 							}
 					])));
 				case 5:
-					D2(MultiLineString(new tink.s2d.MultiLineString([
+					S2D(MultiLineString(new tink.s2d.MultiLineString([
 						for (_ in 0...buffer.readInt32())
 							switch _parse() {
-								case D2(LineString(v)):
+								case S2D(LineString(v)):
 									v;
 								case v:
 									throw 'Unexpected ${v} inside MultiLineString(2D)';
 							}
 					])));
 				case 6:
-					D2(MultiPolygon(new tink.s2d.MultiPolygon([
+					S2D(MultiPolygon(new tink.s2d.MultiPolygon([
 						for (_ in 0...buffer.readInt32())
 							switch _parse() {
-								case D2(Polygon(v)):
+								case S2D(Polygon(v)):
 									v;
 								case v:
 									throw 'Unexpected ${v} inside MultiPolygon(2D)';
 							}
 					])));
 				case 7:
-					D2(GeometryCollection(new tink.s2d.GeometryCollection([
+					S2D(GeometryCollection(new tink.s2d.GeometryCollection([
 						for (_ in 0...buffer.readInt32())
 							switch _parse() {
-								case D2(v):
+								case S2D(v):
 									v;
 								case v:
 									throw 'Unexpected ${v} inside GeometryCollection(2D)';
@@ -71,49 +71,49 @@ class Parser {
 					])));
 				// 3D
 				case 1001:
-					D3(Point(point3d()));
+					S3D(Point(point3d()));
 				case 1002:
-					D3(LineString(new tink.s3d.LineString([for (_ in 0...buffer.readInt32()) point3d()])));
+					S3D(LineString(new tink.s3d.LineString([for (_ in 0...buffer.readInt32()) point3d()])));
 				case 1003:
-					D3(Polygon(new tink.s3d.Polygon([
+					S3D(Polygon(new tink.s3d.Polygon([
 						for (_ in 0...buffer.readInt32())
 							new tink.s3d.LineString([for (_ in 0...buffer.readInt32()) point3d()])
 					])));
 				case 1004:
-					D3(MultiPoint(new tink.s3d.MultiPoint([
+					S3D(MultiPoint(new tink.s3d.MultiPoint([
 						for (_ in 0...buffer.readInt32())
 							switch _parse() {
-								case D3(Point(v)):
+								case S3D(Point(v)):
 									v;
 								case v:
 									throw 'Unexpected ${v} inside MultiPoint(2D)';
 							}
 					])));
 				case 1005:
-					D3(MultiLineString(new tink.s3d.MultiLineString([
+					S3D(MultiLineString(new tink.s3d.MultiLineString([
 						for (_ in 0...buffer.readInt32())
 							switch _parse() {
-								case D3(LineString(v)):
+								case S3D(LineString(v)):
 									v;
 								case v:
 									throw 'Unexpected ${v} inside MultiLineString(2D)';
 							}
 					])));
 				case 1006:
-					D3(MultiPolygon(new tink.s3d.MultiPolygon([
+					S3D(MultiPolygon(new tink.s3d.MultiPolygon([
 						for (_ in 0...buffer.readInt32())
 							switch _parse() {
-								case D3(Polygon(v)):
+								case S3D(Polygon(v)):
 									v;
 								case v:
 									throw 'Unexpected ${v} inside MultiPolygon(2D)';
 							}
 					])));
 				case 1007:
-					D3(GeometryCollection(new tink.s3d.GeometryCollection([
+					S3D(GeometryCollection(new tink.s3d.GeometryCollection([
 						for (_ in 0...buffer.readInt32())
 							switch _parse() {
-								case D3(v):
+								case S3D(v):
 									v;
 								case v:
 									throw 'Unexpected ${v} inside GeometryCollection(2D)';
