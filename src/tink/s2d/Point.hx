@@ -37,6 +37,33 @@ abstract Point(Array<Float>) {
 	inline function toWktParams():String
 		return '$x $y';
 
+	public static function interpolate(points:Array<{coordinates:Point, weight:Float}>):Point {
+		// QUESTION: does this apply to spherical surface? if not, need an impl in LatLngTools
+		var x = 0.;
+		var y = 0.;
+		var sum = 0.;
+
+		for (point in points) {
+			x += point.coordinates.x * point.weight;
+			y += point.coordinates.y * point.weight;
+			sum += point.weight;
+		}
+		return xy(x / sum, y / sum);
+	}
+
+	public static function average(points:Array<Point>):Point {
+		var x = 0.;
+		var y = 0.;
+		var len = points.length;
+
+		for (point in points) {
+			x += point.x;
+			y += point.y;
+		}
+
+		return xy(x / len, y / len);
+	}
+
 	#if geojson
 	@:to
 	inline function toGeoJsonCoordinates():geojson.util.Coordinates

@@ -16,6 +16,13 @@ abstract MultiPolygon(Array<Polygon>) {
 	public inline function get(i:Int):Polygon
 		return this[i];
 
+	public function containsPoint(point:Point) {
+		for (polygon in this)
+			if (polygon.containsPoint(point))
+				return true;
+		return false;
+	}
+
 	public function toWkt():String
 		return length == 0 ? 'MULTIPOLYGON EMPTY' : 'MULTIPOLYGON(${toWktParams()})';
 
