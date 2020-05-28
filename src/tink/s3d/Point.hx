@@ -19,10 +19,10 @@ abstract Point(Array<Float>) {
 		return this[2];
 
 	inline function get_latitude()
-		return x;
+		return y;
 
 	inline function get_longitude()
-		return y;
+		return x;
 
 	inline function get_altitude()
 		return z;
