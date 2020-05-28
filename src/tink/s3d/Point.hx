@@ -34,7 +34,7 @@ abstract Point(Array<Float>) {
 		return new Point(x, y, z);
 
 	public static inline function latLngAlt(lat, lng, alt)
-		return new Point(lat, lng, alt);
+		return new Point(lng, lat, alt);
 
 	public function isEmpty()
 		return this.length == 0 || (Math.isNaN(x) && Math.isNaN(y) && Math.isNaN(y));
