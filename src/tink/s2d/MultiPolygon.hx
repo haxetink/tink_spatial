@@ -23,6 +23,13 @@ abstract MultiPolygon(Array<Polygon>) {
 		return false;
 	}
 
+	public function center():Point {
+		return Point.average([for (polygon in this) polygon.center()]);
+	}
+
+	public function map(f:Point->Point):MultiPolygon
+		return new MultiPolygon(this.map(polygon -> polygon.map(f)));
+
 	public function toWkt():String
 		return length == 0 ? 'MULTIPOLYGON EMPTY' : 'MULTIPOLYGON(${toWktParams()})';
 

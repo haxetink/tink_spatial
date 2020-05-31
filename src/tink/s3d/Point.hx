@@ -36,6 +36,12 @@ abstract Point(Array<Float>) {
 	public static inline function latLngAlt(lat, lng, alt)
 		return new Point(lng, lat, alt);
 
+	public inline function translateXYZ(dx, dy, dz)
+		return new Point(x + dx, y + dy, z + dz);
+
+	public inline function translateLatLngAlt(lat, lng, alt)
+		return new Point(latitude + lat, longitude + lng, altitude + alt);
+
 	public function isEmpty()
 		return this.length == 0 || (Math.isNaN(x) && Math.isNaN(y) && Math.isNaN(y));
 

@@ -16,6 +16,36 @@ abstract Polygon(Array<LineString>) {
 	public inline function get(i:Int):LineString
 		return this[i];
 
+	public function map(f:Point->Point):Polygon
+		return new Polygon(this.map(line -> line.map(f)));
+
+	public inline function center():Point {
+		var points = this[0].slice(0, -1);
+		return Point.average(cast points);
+	}
+
+	/**
+		Construct a regular polygon
+		@param sides number of sides of the polygon
+		@param radius radius of the polygon
+		@param bearing the starting bearing in degrees, default 0
+	**/
+	public static function regular(sides:Int, radius:Float, bearing:Float = 0, ?center:Point) {
+		var cx = center == null ? 0 : center.x;
+		var cy = center == null ? 0 : center.y;
+		var radian = bearing;
+		var increment = Math.PI * 2 / sides;
+
+		var points = [
+			for (n in 0...sides) {
+				var current = radian + n * increment;
+				new Point(cx + Math.sin(current) * radius, cy + Math.cos(current) * radius);
+			}
+		];
+		points.push(points[0]); // back to origin
+		return new Polygon([new LineString(points)]);
+	}
+
 	/**
 		Determines if a point is contained in this polygon.
 		Reference: http://geospatialpython.com/2011/01/point-in-polygon.html

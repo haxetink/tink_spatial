@@ -1,5 +1,7 @@
 package tink.s2d;
 
+import tink.CoreApi.Promise;
+
 @:observable
 abstract Point(Array<Float>) {
 	public var x(get, never):Float;
@@ -27,6 +29,12 @@ abstract Point(Array<Float>) {
 
 	public static inline function latLng(lat, lng)
 		return new Point(lng, lat);
+
+	public inline function translateXY(dx, dy)
+		return new Point(x + dx, y + dy);
+
+	public inline function translateLatLng(lat, lng)
+		return new Point(latitude + lat, longitude + lng);
 
 	public function isEmpty()
 		return this.length == 0 || (Math.isNaN(x) && Math.isNaN(y));
@@ -64,6 +72,9 @@ abstract Point(Array<Float>) {
 		return xy(x / len, y / len);
 	}
 
+	public inline function withZ(z:Float)
+		return tink.s3d.Point.xyz(x, y, z);
+
 	#if geojson
 	@:to
 	inline function toGeoJsonCoordinates():geojson.util.Coordinates
@@ -74,7 +85,11 @@ abstract Point(Array<Float>) {
 		return toGeoJsonCoordinates();
 
 	@:from
-	static inline function fromGeoJson(v:geojson.Point)
+	public static inline function fromGeoJsonCoordinates(v:geojson.util.Coordinates)
+		return latLng(v.latitude, v.longitude);
+
+	@:from
+	public static inline function fromGeoJson(v:geojson.Point)
 		return latLng(v.latitude, v.longitude);
 	#end
 
