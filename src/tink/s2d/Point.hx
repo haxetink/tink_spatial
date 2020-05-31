@@ -1,6 +1,6 @@
 package tink.s2d;
 
-import tink.CoreApi.Promise;
+import tink.spatial.Util.format;
 
 @:observable
 abstract Point(Array<Float>) {
@@ -36,8 +36,14 @@ abstract Point(Array<Float>) {
 	public inline function translateLatLng(lat, lng)
 		return new Point(latitude + lat, longitude + lng);
 
+	public inline function withZ(z:Float)
+		return tink.s3d.Point.xyz(x, y, z);
+
 	public function isEmpty()
 		return this.length == 0 || (Math.isNaN(x) && Math.isNaN(y));
+
+	public function toString(dp = 2):String
+		return '[${format(x, dp)}, ${format(y, dp)}]';
 
 	public function toWkt():String
 		return isEmpty() ? 'POINT EMPTY' : 'POINT(${toWktParams()})';
@@ -71,9 +77,6 @@ abstract Point(Array<Float>) {
 
 		return xy(x / len, y / len);
 	}
-
-	public inline function withZ(z:Float)
-		return tink.s3d.Point.xyz(x, y, z);
 
 	#if geojson
 	@:to

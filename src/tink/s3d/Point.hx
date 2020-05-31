@@ -1,5 +1,7 @@
 package tink.s3d;
 
+import tink.spatial.Util.format;
+
 @:observable
 abstract Point(Array<Float>) {
 	public var x(get, never):Float;
@@ -30,6 +32,9 @@ abstract Point(Array<Float>) {
 	inline function new(x, y, z)
 		this = [x, y, z];
 
+	public function toString(dp = 2):String
+		return '[${format(x, dp)}, ${format(y, dp)}, ${format(z, dp)}]';
+
 	public static inline function xyz(x, y, z)
 		return new Point(x, y, z);
 
@@ -41,6 +46,9 @@ abstract Point(Array<Float>) {
 
 	public inline function translateLatLngAlt(lat, lng, alt)
 		return new Point(latitude + lat, longitude + lng, altitude + alt);
+
+	public inline function withoutZ()
+		return tink.s2d.Point.xy(x, y);
 
 	public function isEmpty()
 		return this.length == 0 || (Math.isNaN(x) && Math.isNaN(y) && Math.isNaN(y));
