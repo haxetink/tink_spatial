@@ -80,11 +80,11 @@ abstract Point(Array<Float>) {
 
 	#if geojson
 	@:to
-	inline function toGeoJsonCoordinates():geojson.util.Coordinates
+	public inline function toGeoJsonCoordinates():geojson.util.Coordinates
 		return cast this;
 
 	@:to
-	inline function toGeoJson():geojson.Point
+	public inline function toGeoJson():geojson.Point
 		return toGeoJsonCoordinates();
 
 	@:from
