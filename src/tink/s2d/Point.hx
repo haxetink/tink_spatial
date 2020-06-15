@@ -31,10 +31,10 @@ abstract Point(Array<Float>) {
 		return new Point(lng, lat);
 
 	public inline function translateXY(dx, dy)
-		return new Point(x + dx, y + dy);
+		return xy(x + dx, y + dy);
 
 	public inline function translateLatLng(lat, lng)
-		return new Point(latitude + lat, longitude + lng);
+		return latLng(latitude + lat, longitude + lng);
 
 	public inline function withZ(z:Float)
 		return tink.s3d.Point.xyz(x, y, z);

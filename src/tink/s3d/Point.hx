@@ -42,10 +42,10 @@ abstract Point(Array<Float>) {
 		return new Point(lng, lat, alt);
 
 	public inline function translateXYZ(dx, dy, dz)
-		return new Point(x + dx, y + dy, z + dz);
+		return xyz(x + dx, y + dy, z + dz);
 
 	public inline function translateLatLngAlt(lat, lng, alt)
-		return new Point(latitude + lat, longitude + lng, altitude + alt);
+		return latLngAlt(latitude + lat, longitude + lng, altitude + alt);
 
 	public inline function withoutZ()
 		return tink.s2d.Point.xy(x, y);
