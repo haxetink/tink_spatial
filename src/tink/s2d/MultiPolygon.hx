@@ -40,5 +40,9 @@ abstract MultiPolygon(Array<Polygon>) {
 	@:from
 	public static inline function fromGeoJson(v:geojson.MultiPolygon)
 		return new MultiPolygon(cast v.polygons);
+
+	@:to
+	public inline function toGeoJson():geojson.MultiPolygon
+		return new geojson.MultiPolygon(cast this);
 	#end
 }
