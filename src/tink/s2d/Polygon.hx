@@ -97,4 +97,22 @@ abstract Polygon(Array<LineString>) {
 
 	inline function toWktParams():String
 		return this.map(line -> '(${line.toWktParams()})').join(',');
+
+	#if geojson
+	@:to
+	public inline function toGeoJsonLines():geojson.util.Lines
+		return cast this;
+
+	@:to
+	public inline function toGeoJson():geojson.Polygon
+		return new geojson.Polygon(toGeoJsonLines());
+
+	@:from
+	public static inline function fromGeoJsonLines(v:geojson.util.Lines)
+		return new Polygon(cast v);
+
+	@:from
+	public static inline function fromGeoJson(v:geojson.Polygon)
+		return new Polygon(cast v.lines);
+	#end
 }
