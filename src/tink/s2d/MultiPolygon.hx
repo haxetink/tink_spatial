@@ -2,7 +2,7 @@ package tink.s2d;
 
 @:observable
 @:access(tink.s2d)
-@:forward(concat, copy, filter, indexOf, iterator, join, lastIndexOf, map, slice, toString)
+@:forward(copy, filter, indexOf, iterator, join, lastIndexOf, map, slice, toString)
 abstract MultiPolygon(Array<Polygon>) {
 	public var length(get, never):Int;
 
@@ -30,6 +30,10 @@ abstract MultiPolygon(Array<Polygon>) {
 	public function mapPoints(f:Point->Point):MultiPolygon
 		return new MultiPolygon(this.map(polygon -> polygon.mapPoints(f)));
 
+	public inline function concat(v:ConcatTarget):MultiPolygon {
+		return new MultiPolygon(this.concat(v));
+	}
+
 	public function toWkt():String
 		return length == 0 ? 'MULTIPOLYGON EMPTY' : 'MULTIPOLYGON(${toWktParams()})';
 
@@ -44,5 +48,12 @@ abstract MultiPolygon(Array<Polygon>) {
 	@:to
 	public inline function toGeoJson():geojson.MultiPolygon
 		return new geojson.MultiPolygon(cast this);
+	#end
+}
+
+private abstract ConcatTarget(Array<Polygon>) from Array<Polygon> to Array<Polygon> {
+	#if geojson
+	@:from public static inline function fromLiness(v:geojson.util.Liness):ConcatTarget
+		return cast v;
 	#end
 }
