@@ -16,7 +16,7 @@ abstract LineString(Array<Point>) {
 	public inline function get(i:Int):Point
 		return this[i];
 
-	public function map(f:Point->Point):LineString
+	public function mapPoints(f:Point->Point):LineString
 		return new LineString(this.map(f));
 
 	public function toWkt():String

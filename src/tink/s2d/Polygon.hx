@@ -16,8 +16,8 @@ abstract Polygon(Array<LineString>) {
 	public inline function get(i:Int):LineString
 		return this[i];
 
-	public function map(f:Point->Point):Polygon
-		return new Polygon(this.map(line -> line.map(f)));
+	public function mapPoints(f:Point->Point):Polygon
+		return new Polygon(this.map(line -> line.mapPoints(f)));
 
 	public inline function center():Point {
 		var points = this[0].slice(0, -1);
