@@ -59,6 +59,14 @@ abstract Point(Array<Float>) {
 	inline function toWktParams():String
 		return '$x $y $z';
 
+	@:op(A + B)
+	public inline function add(that:Point)
+		return xyz(x + that.x, y + that.y, z + that.z);
+
+	@:op(A - B)
+	public inline function subtract(that:Point)
+		return xyz(x - that.x, y - that.y, z - that.z);
+
 	#if tink_json
 	@:to
 	public function toRepresentation():tink.json.Representation<Array<Float>>

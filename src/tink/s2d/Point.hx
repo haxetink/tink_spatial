@@ -78,6 +78,14 @@ abstract Point(Array<Float>) {
 		return xy(x / len, y / len);
 	}
 
+	@:op(A + B)
+	public inline function add(that:Point)
+		return xy(x + that.x, y + that.y);
+
+	@:op(A - B)
+	public inline function subtract(that:Point)
+		return xy(x - that.x, y - that.y);
+
 	#if geojson
 	@:to
 	public inline function toGeoJsonCoordinates():geojson.util.Coordinates
