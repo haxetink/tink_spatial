@@ -24,4 +24,14 @@ abstract LineString(Array<Point>) {
 
 	inline function toWktParams():String
 		return this.map(point -> point.toWktParams()).join(',');
+
+	#if tink_json
+	@:to
+	public inline function toRepresentation():tink.json.Representation<Array<Point>>
+		return new tink.json.Representation(this);
+
+	@:from
+	public static inline function fromRepresentation(rep:tink.json.Representation<Array<Point>>):LineString
+		return cast rep.get();
+	#end
 }

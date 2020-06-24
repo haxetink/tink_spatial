@@ -69,11 +69,11 @@ abstract Point(Array<Float>) {
 
 	#if tink_json
 	@:to
-	public function toRepresentation():tink.json.Representation<Array<Float>>
+	public inline function toRepresentation():tink.json.Representation<Array<Float>>
 		return new tink.json.Representation(this);
 
 	@:from
-	public static function fromRepresentation(rep:tink.json.Representation<Array<Float>>):Point
+	public static inline function fromRepresentation(rep:tink.json.Representation<Array<Float>>):Point
 		return cast rep.get();
 	#end
 }

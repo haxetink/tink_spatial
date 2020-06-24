@@ -49,6 +49,16 @@ abstract MultiPolygon(Array<Polygon>) {
 	public inline function toGeoJson():geojson.MultiPolygon
 		return new geojson.MultiPolygon(cast this);
 	#end
+
+	#if tink_json
+	@:to
+	public inline function toRepresentation():tink.json.Representation<Array<Polygon>>
+		return new tink.json.Representation(this);
+
+	@:from
+	public static inline function fromRepresentation(rep:tink.json.Representation<Array<Polygon>>):MultiPolygon
+		return cast rep.get();
+	#end
 }
 
 private abstract ConcatTarget(Array<Polygon>) from Array<Polygon> to Array<Polygon> {

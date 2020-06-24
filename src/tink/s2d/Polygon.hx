@@ -115,4 +115,14 @@ abstract Polygon(Array<LineString>) {
 	public static inline function fromGeoJson(v:geojson.Polygon)
 		return new Polygon(cast v.lines);
 	#end
+
+	#if tink_json
+	@:to
+	public inline function toRepresentation():tink.json.Representation<Array<LineString>>
+		return new tink.json.Representation(this);
+
+	@:from
+	public static inline function fromRepresentation(rep:tink.json.Representation<Array<LineString>>):Polygon
+		return cast rep.get();
+	#end
 }
