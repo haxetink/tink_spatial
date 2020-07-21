@@ -59,6 +59,22 @@ abstract Point(Array<Float>) {
 	inline function toWktParams():String
 		return '$x $y $z';
 
+	public static function interpolate(points:Array<{coordinates:Point, weight:Float}>):Point {
+		// QUESTION: does this apply to spherical surface? if not, need an impl in LatLngTools
+		var x = 0.;
+		var y = 0.;
+		var z = 0.;
+		var sum = 0.;
+
+		for (point in points) {
+			x += point.coordinates.x * point.weight;
+			y += point.coordinates.y * point.weight;
+			z += point.coordinates.z * point.weight;
+			sum += point.weight;
+		}
+		return xyz(x / sum, y / sum, z / sum);
+	}
+
 	@:op(A + B)
 	public inline function add(that:Point)
 		return xyz(x + that.x, y + that.y, z + that.z);
