@@ -36,11 +36,11 @@ abstract Point(Array<Float>) {
 	public inline function translateLatLng(lat, lng)
 		return latLng(latitude + lat, longitude + lng);
 
-	public inline function withZ(z:Float)
-		return tink.s3d.Point.xyz(x, y, z);
-
 	public function isEmpty()
 		return this.length == 0 || (Math.isNaN(x) && Math.isNaN(y));
+
+	public inline function to3D(z:Float)
+		return tink.s3d.Point.xyz(x, y, z);
 
 	public function toString(dp = 2):String
 		return '[${format(x, dp)}, ${format(y, dp)}]';
