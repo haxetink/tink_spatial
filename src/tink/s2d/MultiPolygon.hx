@@ -1,5 +1,7 @@
 package tink.s2d;
 
+@:jsonStringify(line -> (cast line : Array<tink.s2d.Polygon>))
+@:jsonParse(array -> (cast array : MultiPolygon))
 @:observable
 @:access(tink.s2d)
 @:forward(copy, filter, indexOf, iterator, join, lastIndexOf, map, slice, toString)
@@ -48,16 +50,6 @@ abstract MultiPolygon(Array<Polygon>) {
 	@:to
 	public inline function toGeoJson():geojson.MultiPolygon
 		return new geojson.MultiPolygon(cast this);
-	#end
-
-	#if tink_json
-	@:to
-	public inline function toRepresentation():tink.json.Representation<Array<Polygon>>
-		return new tink.json.Representation(this);
-
-	@:from
-	public static inline function fromRepresentation(rep:tink.json.Representation<Array<Polygon>>):MultiPolygon
-		return cast rep.get();
 	#end
 }
 

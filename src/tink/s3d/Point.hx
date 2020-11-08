@@ -2,6 +2,8 @@ package tink.s3d;
 
 import tink.spatial.Util.format;
 
+@:jsonStringify(point -> (cast point : Array<Float>))
+@:jsonParse(array -> (cast array : Point))
 @:observable
 abstract Point(Array<Float>) {
 	public var x(get, never):Float;
@@ -85,14 +87,4 @@ abstract Point(Array<Float>) {
 	@:op(A - B)
 	public inline function subtract(that:Point)
 		return xyz(x - that.x, y - that.y, z - that.z);
-
-	#if tink_json
-	@:to
-	public inline function toRepresentation():tink.json.Representation<Array<Float>>
-		return new tink.json.Representation(this);
-
-	@:from
-	public static inline function fromRepresentation(rep:tink.json.Representation<Array<Float>>):Point
-		return cast rep.get();
-	#end
 }

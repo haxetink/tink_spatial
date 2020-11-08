@@ -1,5 +1,7 @@
 package tink.s2d;
 
+@:jsonStringify(line -> (cast line : Array<tink.s2d.LineString>))
+@:jsonParse(array -> (cast array : Polygon))
 @:observable
 @:access(tink.s2d)
 @:forward(concat, copy, filter, indexOf, iterator, join, lastIndexOf, map, slice, toString)
@@ -114,15 +116,5 @@ abstract Polygon(Array<LineString>) {
 	@:from
 	public static inline function fromGeoJson(v:geojson.Polygon)
 		return new Polygon(cast v.lines);
-	#end
-
-	#if tink_json
-	@:to
-	public inline function toRepresentation():tink.json.Representation<Array<LineString>>
-		return new tink.json.Representation(this);
-
-	@:from
-	public static inline function fromRepresentation(rep:tink.json.Representation<Array<LineString>>):Polygon
-		return cast rep.get();
 	#end
 }

@@ -11,6 +11,7 @@ class RunTests {
 			new WkbTest(),
 			new S2dTest(),
 			new S3dTest(),
+			new JsonTest(),
 			// @formatter:on
 		])).handle(Runner.exit);
 	}

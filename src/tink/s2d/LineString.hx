@@ -1,5 +1,7 @@
 package tink.s2d;
 
+@:jsonStringify(line -> (cast line : Array<tink.s2d.Point>))
+@:jsonParse(array -> (cast array : LineString))
 @:observable
 @:access(tink.s2d)
 @:forward(concat, copy, filter, indexOf, iterator, join, lastIndexOf, map, slice, toString)
@@ -24,14 +26,4 @@ abstract LineString(Array<Point>) {
 
 	inline function toWktParams():String
 		return this.map(point -> point.toWktParams()).join(',');
-
-	#if tink_json
-	@:to
-	public inline function toRepresentation():tink.json.Representation<Array<Point>>
-		return new tink.json.Representation(this);
-
-	@:from
-	public static inline function fromRepresentation(rep:tink.json.Representation<Array<Point>>):LineString
-		return cast rep.get();
-	#end
 }

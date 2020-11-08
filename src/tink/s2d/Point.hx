@@ -2,6 +2,8 @@ package tink.s2d;
 
 import tink.spatial.Util.format;
 
+@:jsonStringify(point -> (cast point : Array<Float>))
+@:jsonParse(array -> (cast array : Point))
 @:observable
 abstract Point(Array<Float>) {
 	public var x(get, never):Float;
@@ -102,15 +104,5 @@ abstract Point(Array<Float>) {
 	@:from
 	public static inline function fromGeoJson(v:geojson.Point)
 		return latLng(v.latitude, v.longitude);
-	#end
-
-	#if tink_json
-	@:to
-	public inline function toRepresentation():tink.json.Representation<Array<Float>>
-		return new tink.json.Representation(this);
-
-	@:from
-	public static inline function fromRepresentation(rep:tink.json.Representation<Array<Float>>):Point
-		return cast rep.get();
 	#end
 }
