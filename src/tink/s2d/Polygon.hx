@@ -1,7 +1,7 @@
 package tink.s2d;
 
 @:jsonStringify(line -> (cast line : Array<tink.s2d.LineString>))
-@:jsonParse(array -> (cast array : Polygon))
+@:jsonParse((array:Array<tink.s2d.LineString>) -> (cast array : tink.s2d.Polygon))
 @:observable
 @:access(tink.s2d)
 @:forward(concat, copy, filter, indexOf, iterator, join, lastIndexOf, map, slice, toString)

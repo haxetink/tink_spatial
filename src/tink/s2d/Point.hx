@@ -3,7 +3,7 @@ package tink.s2d;
 import tink.spatial.Util.format;
 
 @:jsonStringify(point -> (cast point : Array<Float>))
-@:jsonParse(array -> (cast array : Point))
+@:jsonParse((array:Array<Float>) -> (cast array : tink.s2d.Point))
 @:observable
 abstract Point(Array<Float>) {
 	public var x(get, never):Float;
