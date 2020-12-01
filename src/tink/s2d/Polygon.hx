@@ -2,6 +2,8 @@ package tink.s2d;
 
 @:jsonStringify(line -> (cast line : Array<tink.s2d.LineString>))
 @:jsonParse((array:Array<tink.s2d.LineString>) -> (cast array : tink.s2d.Polygon))
+@:tink.encode(line -> (cast line : Array<tink.s2d.LineString>))
+@:tink.decode((array:Array<tink.s2d.LineString>) -> (cast array : tink.s2d.Polygon))
 @:observable
 @:access(tink.s2d)
 @:forward(concat, copy, filter, indexOf, iterator, join, lastIndexOf, map, slice, toString)

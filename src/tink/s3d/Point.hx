@@ -4,6 +4,8 @@ import tink.spatial.Util.format;
 
 @:jsonStringify(point -> (cast point : Array<Float>))
 @:jsonParse((array:Array<Float>) -> (cast array : tink.s3d.Point))
+@:tink.encode(point -> (cast point : Array<Float>))
+@:tink.decode((array:Array<Float>) -> (cast array : tink.s3d.Point))
 @:observable
 abstract Point(Array<Float>) {
 	public var x(get, never):Float;
