@@ -89,4 +89,8 @@ abstract Point(Array<Float>) {
 	@:op(A - B)
 	public inline function subtract(that:Point)
 		return xyz(x - that.x, y - that.y, z - that.z);
+
+	// @:op(A == B)
+	public inline function eq(that:Point)
+		return x == that.x && y == that.y && z == that.z;
 }

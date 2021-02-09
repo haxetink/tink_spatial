@@ -90,6 +90,10 @@ abstract Point(Array<Float>) {
 	public inline function subtract(that:Point)
 		return xy(x - that.x, y - that.y);
 
+	// @:op(A == B)
+	public inline function eq(that:Point)
+		return x == that.x && y == that.y;
+
 	#if geojson
 	@:to
 	public inline function toGeoJsonCoordinates():geojson.util.Coordinates
