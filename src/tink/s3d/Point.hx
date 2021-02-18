@@ -37,7 +37,7 @@ abstract Point(Array<Float>) {
 		this = [x, y, z];
 
 	public inline function to2D():tink.s2d.Point
-		return cast this;
+		return cast this.slice(0, 2);
 
 	public function toString(dp = 2):String
 		return '[${format(x, dp)}, ${format(y, dp)}, ${format(z, dp)}]';
