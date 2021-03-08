@@ -86,7 +86,7 @@ class Parser {
 								case S3D(Point(v)):
 									v;
 								case v:
-									throw 'Unexpected ${v} inside MultiPoint(2D)';
+									throw 'Unexpected ${v} inside MultiPoint(3D)';
 							}
 					])));
 				case 1005:
@@ -96,7 +96,7 @@ class Parser {
 								case S3D(LineString(v)):
 									v;
 								case v:
-									throw 'Unexpected ${v} inside MultiLineString(2D)';
+									throw 'Unexpected ${v} inside MultiLineString(3D)';
 							}
 					])));
 				case 1006:
@@ -106,7 +106,7 @@ class Parser {
 								case S3D(Polygon(v)):
 									v;
 								case v:
-									throw 'Unexpected ${v} inside MultiPolygon(2D)';
+									throw 'Unexpected ${v} inside MultiPolygon(3D)';
 							}
 					])));
 				case 1007:
@@ -116,7 +116,7 @@ class Parser {
 								case S3D(v):
 									v;
 								case v:
-									throw 'Unexpected ${v} inside GeometryCollection(2D)';
+									throw 'Unexpected ${v} inside GeometryCollection(3D)';
 							}
 					])));
 				case v:
