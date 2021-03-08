@@ -24,6 +24,11 @@ class S2dTest {
 		asserts.assert(t1.x == t2.x);
 		asserts.assert(t1.y == t2.y);
 
+		var i1 = [for (v in p1) v];
+		asserts.assert(i1.length == 2);
+		asserts.assert(i1[0] == p1.longitude);
+		asserts.assert(i1[1] == p1.latitude);
+
 		return asserts.done();
 	}
 }

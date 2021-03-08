@@ -28,6 +28,9 @@ abstract Point(Array<Float>) {
 	inline function new(x, y)
 		this = [x, y];
 
+	public inline function iterator()
+		return new tink.spatial.Util.TupleIterator(this, 2);
+
 	public static inline function xy(x, y)
 		return new Point(x, y);
 

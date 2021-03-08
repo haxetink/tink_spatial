@@ -29,6 +29,12 @@ class S3dTest {
 		asserts.assert(t1.y == t2.y);
 		asserts.assert(t1.z == t2.z);
 
+		var i1 = [for (v in p1) v];
+		asserts.assert(i1.length == 3);
+		asserts.assert(i1[0] == p1.longitude);
+		asserts.assert(i1[1] == p1.latitude);
+		asserts.assert(i1[2] == p1.altitude);
+
 		return asserts.done();
 	}
 }

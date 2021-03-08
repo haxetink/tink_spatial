@@ -36,6 +36,9 @@ abstract Point(Array<Float>) {
 	inline function new(x, y, z)
 		this = [x, y, z];
 
+	public inline function iterator()
+		return new tink.spatial.Util.TupleIterator(this, 3);
+
 	public inline function to2D():tink.s2d.Point
 		return cast this.slice(0, 2);
 
