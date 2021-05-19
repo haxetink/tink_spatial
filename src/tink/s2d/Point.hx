@@ -49,6 +49,9 @@ abstract Point(Array<Float>) {
 	public inline function to3D(z:Float)
 		return tink.s3d.Point.xyz(x, y, z);
 
+	public function toArray():Array<Float>
+		return this.slice(0, 2);
+
 	public function toString(dp = 2):String
 		return '[${format(x, dp)}, ${format(y, dp)}]';
 
