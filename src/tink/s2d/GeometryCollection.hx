@@ -10,6 +10,9 @@ abstract GeometryCollection(Array<Geometry>) {
 
 	public inline function new(v)
 		this = v;
+	
+	public function toEwkt(srid:Int):String
+		return 'SRID=$srid;' + toWkt();
 
 	public function toWkt():String
 		return length == 0 ? 'GEOMETRYCOLLECTION EMPTY' : 'GEOMETRYCOLLECTION(${toWktParams()})';

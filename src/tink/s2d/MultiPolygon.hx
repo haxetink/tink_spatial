@@ -37,6 +37,9 @@ abstract MultiPolygon(Array<Polygon>) {
 	public inline function concat(v:ConcatTarget):MultiPolygon {
 		return new MultiPolygon(this.concat(v));
 	}
+	
+	public function toEwkt(srid:Int):String
+		return 'SRID=$srid;' + toWkt();
 
 	public function toWkt():String
 		return length == 0 ? 'MULTIPOLYGON EMPTY' : 'MULTIPOLYGON(${toWktParams()})';

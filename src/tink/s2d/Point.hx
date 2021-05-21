@@ -54,6 +54,9 @@ abstract Point(Array<Float>) {
 
 	public function toString(dp = 2):String
 		return '[${format(x, dp)}, ${format(y, dp)}]';
+	
+	public function toEwkt(srid:Int):String
+		return 'SRID=$srid;' + toWkt();
 
 	public function toWkt():String
 		return isEmpty() ? 'POINT EMPTY' : 'POINT(${toWktParams()})';

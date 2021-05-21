@@ -12,6 +12,18 @@ enum Geometry {
 }
 
 class GeometryTools {
+	public static function toEwkt(g:Geometry, srid:Int):String {
+		return switch g {
+			case Point(v): v.toEwkt(srid);
+			case LineString(v): v.toEwkt(srid);
+			case Polygon(v): v.toEwkt(srid);
+			case MultiPoint(v): v.toEwkt(srid);
+			case MultiLineString(v): v.toEwkt(srid);
+			case MultiPolygon(v): v.toEwkt(srid);
+			case GeometryCollection(v): v.toEwkt(srid);
+		}
+	}
+	
 	public static function toWkt(g:Geometry):String {
 		return switch g {
 			case Point(v): v.toWkt();

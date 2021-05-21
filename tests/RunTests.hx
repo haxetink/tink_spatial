@@ -9,6 +9,7 @@ class RunTests {
 		Runner.run(TestBatch.make([
 			// @formatter:off
 			new WkbTest(),
+			new EwkbTest(),
 			new S2dTest(),
 			new S3dTest(),
 			new JsonTest(),

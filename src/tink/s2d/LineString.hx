@@ -22,6 +22,9 @@ abstract LineString(Array<Point>) {
 
 	public function mapPoints(f:Point->Point):LineString
 		return new LineString(this.map(f));
+	
+	public function toEwkt(srid:Int):String
+		return 'SRID=$srid;' + toWkt();
 
 	public function toWkt():String
 		return length == 0 ? 'LINESTRING EMPTY' : 'LINESTRING(${toWktParams()})';

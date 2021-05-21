@@ -15,6 +15,9 @@ abstract MultiLineString(Array<LineString>) {
 	@:op([])
 	public inline function get(i:Int):LineString
 		return this[i];
+	
+	public function toEwkt(srid:Int):String
+		return 'SRID=$srid;' + toWkt();
 
 	public function toWkt():String
 		return length == 0 ? 'MULTILINESTRING EMPTY' : 'MULTILINESTRING(${toWktParams()})';

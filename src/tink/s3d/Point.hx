@@ -65,6 +65,9 @@ abstract Point(Array<Float>) {
 
 	public function isEmpty()
 		return this.length == 0 || (Math.isNaN(x) && Math.isNaN(y) && Math.isNaN(y));
+	
+	public function toEwkt(srid:Int):String
+		return 'SRID=$srid;' + toWkt();
 
 	public function toWkt():String
 		return isEmpty() ? 'POINT Z EMPTY' : 'POINT Z (${toWktParams()})';

@@ -94,6 +94,9 @@ abstract Polygon(Array<LineString>) {
 				return false;
 		return true;
 	}
+	
+	public function toEwkt(srid:Int):String
+		return 'SRID=$srid;' + toWkt();
 
 	public function toWkt():String {
 		return length == 0 ? 'POLYGON EMPTY' : 'POLYGON(${toWktParams()})';

@@ -15,6 +15,9 @@ abstract MultiPoint(Array<Point>) {
 	@:op([])
 	public inline function get(i:Int):Point
 		return this[i];
+	
+	public function toEwkt(srid:Int):String
+		return 'SRID=$srid;' + toWkt();
 
 	public function toWkt():String
 		return length == 0 ? 'MULTIPOINT EMPTY' : 'MULTIPOINT(${toWktParams()})';
