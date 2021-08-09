@@ -11,6 +11,10 @@ abstract MultiPoint(Array<Point>) {
 
 	public inline function new(v)
 		this = v;
+
+	@:op([])
+	public inline function get(i:Int):Point
+		return this[i];
 	
 	public function toEwkt(srid:Int):String
 		return 'SRID=$srid;' + toWkt();

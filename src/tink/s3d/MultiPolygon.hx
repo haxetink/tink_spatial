@@ -11,6 +11,10 @@ abstract MultiPolygon(Array<Polygon>) {
 
 	public inline function new(v)
 		this = v;
+
+	@:op([])
+	public inline function get(i:Int):Polygon
+		return this[i];
 	
 	public function toEwkt(srid:Int):String
 		return 'SRID=$srid;' + toWkt();

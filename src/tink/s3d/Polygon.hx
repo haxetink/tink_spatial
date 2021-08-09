@@ -11,6 +11,10 @@ abstract Polygon(Array<LineString>) {
 
 	public inline function new(v)
 		this = v;
+
+	@:op([])
+	public inline function get(i:Int):LineString
+		return this[i];
 	
 	public function toEwkt(srid:Int):String
 		return 'SRID=$srid;' + toWkt();
